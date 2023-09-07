@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator</title>
+    <style>
+        #display {
+            width: 210px;
+            height: 50px;
+            font-size: 25px;
+            text-align: right;
+        }
+
+        .calculator-button {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        .calculator-buttonup {
+            width: 105px;
+            height: 50px;
+            font-size: 20px;
+        }
+        
+        .clear-backspace {
+            text-align: right;
+        }
+
+    </style>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function backspace() {
+            const display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculateResult() {
+            try {
+                const expression = document.getElementById('display').value;
+                const result = eval(expression);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+    <input type="text" id="display" disabled>
+    <table>
+        <tr>
+            <td colspan="4" class="clear-backspace">
+                <button class="calculator-buttonup" onclick="clearDisplay()">C</button>
+                <button class="calculator-buttonup" onclick="backspace()">←</button>
+            </td>
+        </tr>
+        <tr>
+            <td><button class="calculator-button" onclick="appendToDisplay('7')">7</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('8')">8</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('9')">9</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('*')">x</button></td>
+        </tr>
+        <tr>
+            <td><button class="calculator-button" onclick="appendToDisplay('4')">4</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('5')">5</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('6')">6</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="calculator-button" onclick="appendToDisplay('1')">1</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('2')">2</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('3')">3</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button class="calculator-button" onclick="appendToDisplay('.')">.</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('0')">0</button></td>
+            <td><button class="calculator-button" onclick="appendToDisplay('/')">/</button></td>
+            <td><button class="calculator-button" onclick="calculateResult()">=</button></td>
+        </tr>
+    </table>
+</body>
+</html>
